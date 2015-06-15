@@ -1,108 +1,146 @@
 do
 
--- py = require 'python'
--- 
--- sum_from_python = py.import "get_stop_times".get_stop_times
+usage_en = "EMT\n"..
+            "⠀emt - Valence EMT\n"..
+            "⠀⠀⠀public transport\n"..
+            "⠀⠀⠀information\n\n"..
+                
+            "SYNOPSIS\n"..
+            "⠀emt [stop] STOP-NUMBER\n"..
+            "⠀emt [suggest] STRING\n"..
+            "⠀emt help\n\n"..
+                
+            "DESCRIPTION\n"..            --| 
+            "⠀stop STOP-NUMBER\n"..
+            "⠀⠀display stop timetable\n\n"..
+                
+            "⠀suggest STRING\n"..
+            "⠀⠀suggest and show stops\n"..
+            "⠀⠀that match the STRING\n\n"..
+                
+            "⠀help\n"..
+            "⠀⠀display this help\n\n"..
+                
+            "⠀no options\n"..
+            "⠀⠀suggest and display\n"..
+            "⠀⠀stops that matches\n"..
+            "⠀⠀the STRING, if there\n"..
+            "⠀⠀is a single stop that\n"..
+            "⠀⠀matches, display its\n"..
+            "⠀⠀timetable, if don't\n"..
+            "⠀⠀list them all"
 
-help = "NAME\n"..
-       "⠀emt - Valence EMT\n"..
-       "⠀⠀⠀public transport\n"..
-       "⠀⠀⠀information\n"..
-           
-       "SYNOPSIS\n"..
-       "⠀/emt [-t STOP-NUMBER] [-v]\n"..
-       "⠀/emt [-s] STRING [-v]\n"..
-       "⠀/emt -h\n\n"..
-           
-       "DESCRIPTION\n"..            --| 
-       "⠀-t=STOP-NUMBER\n"..
-       "⠀⠀display stop timetable\n\n"..
-           
-       "⠀-s=STRING\n"..
-       "⠀⠀search and show stops\n"..
-       "⠀⠀that match the STRING\n\n"..
-          
-       "⠀-h\n"..
-       "⠀⠀display this help\n\n"..
-           
-       "⠀no options\n"..
-       "⠀⠀search and display\n"..
-       "⠀⠀stops that matches\n"..
-       "⠀⠀the STRING, if there\n"..
-       "⠀⠀is a single stop that\n"..
-       "⠀⠀matches, display its\n"..
-       "⠀⠀timetable"
+usage_es = "EMT\n"..
+            "⠀emt - Información del\n"..
+            "⠀⠀⠀transporte público\n"..
+            "⠀⠀⠀EMT Valencia\n\n"..
+                
+            "SYNOPSIS\n"..
+            "⠀emt [parada] NÚMERO\n"..
+            "⠀emt [sugerir] TEXTO\n"..
+            "⠀emt ayuda\n\n"..
+                
+            "DESCRIPTION\n"..            --| 
+            "⠀parada NÚMERO\n"..
+            "⠀⠀muestra el horario de\n"..
+            "⠀⠀la parada\n\n"..
+                
+            "⠀sugerir TEXTO\n"..
+            "⠀⠀busca y muesta las\n"..
+            "⠀⠀paradas que coinciden\n"..
+            "⠀⠀con el TEXTO\n\n"..
+                
+            "⠀ayuda\n"..
+            "⠀⠀muestra esta ayuda\n\n"..
+                
+            "⠀sin opciones\n"..
+            "⠀⠀busca y muestra las\n"..
+            "⠀⠀paradas que coinciden\n"..
+            "⠀⠀con el TEXTO\n"..
+            "⠀⠀introducido, si\n"..
+            "⠀⠀encuentra una única\n"..
+            "⠀⠀parada, muestra su\n"..
+            "⠀⠀horario, si no, las\n"..
+            "⠀⠀lista todas"
 
--- verbose = false
-       
--- loglevelstrings = {"[CRITICAL]",
---                    "[ERROR]",
---                    "[WARNING]",
---                    "[INFO]",
---                    "[DEBUG]",
---                    "[DEBUG - WAITING]"}
--- loglevelemoji = {"✋",
---                  "❌",
---                  "⚠️",
---                  "ℹ️",
---                  "🐜",
---                  "⌛️"}
-       
-bus_lines = {{{'la Malva-rosa', 361},
-              {'la Malva-rosa', 1006},
-              {'la Malva-rosa', 349},
-              {'la Malva-rosa', 350},
-              {'la Malva-rosa', 351},
-              {'la Malva-rosa', 352},
-              {'la Malva-rosa', 2032},
-              {'la Malva-rosa', 773},
-              {'la Malva-rosa', 1260}}} -- General Palanca - Porta de la Mar (jardí)}
+usage_ca = "EMT\n"..
+            "⠀emt - Informació del\n"..
+            "⠀⠀⠀transport públic\n"..
+            "⠀⠀⠀EMT València\n\n"..
+                
+            "SYNOPSIS\n"..
+            "⠀emt [parada] NOMBRE\n"..
+            "⠀emt [suggerir] TEXT\n"..
+            "⠀emt ajuda\n\n"..
+                
+            "DESCRIPTION\n"..            --| 
+            "⠀parada NOMBRE\n"..
+            "⠀⠀mostra l'horari de la\n"..
+            "⠀⠀parada\n\n"..
+                
+            "⠀suggerir TEXT\n"..
+            "⠀⠀cerca y mostra les\n"..
+            "⠀⠀parades que coincideixen\n"..
+            "⠀⠀amb el TEXT\n\n"..
+                
+            "⠀ajuda\n"..
+            "⠀⠀mostra aquesta ajuda\n\n"..
+                
+            "⠀sense opcions\n"..
+            "⠀⠀busca i mostra les\n"..
+            "⠀⠀parades que\n"..
+            "⠀⠀coincideixen amb el\n"..
+            "⠀⠀TEXT introduït, si\n"..
+            "⠀⠀troba una única\n"..
+            "⠀⠀parada, mostra el seu\n"..
+            "⠀⠀horari, si no, les\n"..
+            "⠀⠀llista totes"
+
 
 local function run(msg, matches)
-  local receiver = get_receiver(msg)
-  local cmd = matches[1].."-"
---   if cmd:match("%-test") ~= nil then
---     reply(msg, "0")
---     sleep(1)
---         reply(msg, "1")
--- --     send_msg(get_receiver(msg), "1", cb_function, cb_extra)
--- --     send_msg(get_receiver(msg), "1", ok_cb, false)
--- --     reply(msg, "1")
---     sleep(1)
---     co = coroutine.create(function ()
---             send_msg(get_receiver(msg), "2", cb_function, cb_extra)
---             send_msg(get_receiver(msg), "2", ok_cb, false)
---             reply(msg, "2")
---          end)
---     coroutine.resume (co)
---     sleep(1)
---     reply(msg, "3")
---     sleep(1)
---     return "4"
---   end
-  if cmd:match("%-%a*v") ~= nil then
-    verbose = true
-  end
-  if cmd:match("%-%a*h") ~= nil then
-    return help
-  elseif cmd:match("%-%a*t[% =](.*)%-") ~= nil then
-    return get_stop_timetable_from_number(cmd:match("%-%a*t[% =](.*)%-"))
-  elseif cmd:match("%-%a*s[% =](.*)%-") ~= nil then
-    return suggestions_to_string(
-                get_suggestions(
-                    cmd:match("%-%a*s[% =](.*)%-")
-                ),
-                cmd:match("%-%a*s[% =](.*)%-")
-    )
---   elseif cmd:match("%-.+") ~= nil then
---     return "Invalid argument: "..cmd:match("%-(.*)")
-  else
-    return general(matches[1])
-  end
+    if msg.to.id == 16024212 then
+        return false
+    end
+    local input = matches[1]:lower()
+    local command = input:match("^(%w*)")
+    if command == "emt" then
+        return emt(msg, input:match("^emt%s*(.*)%s*$"))
+    else
+        return command .. " is not a valid command, try with \"emt\"\n"..
+               command .. " no es un comando válido, prueba con \"emt\"\n"..
+               command .. " no és una ordre vàlida, prova amb \"emt\"\n"
+    end
 end
-
-function trace()
-    
+        
+function emt(msg, input)
+    print(input)
+    local receiver = get_receiver(msg)
+    if input == "" then
+        return "Use \"emt help\" to get the bot usage\n"..
+               "Utiliza \"emt ayuda\" para obtener el uso del bot\n"..
+               "Utilitza \"emt ajuda\" per obtindre l'ús del bot"
+    elseif input:match("^help") ~= nil then
+        return usage_en
+    elseif input:match("^ayuda") ~= nil then
+        return usage_es
+    elseif input:match("^ajuda") ~= nil then
+        return usage_ca
+    --for stop number
+    elseif input:match("^%d+$") ~= nil or
+           input:match("^stop%s+%d+$") ~= nil or 
+           input:match("^parada%s+%d+$") ~= nil or
+           input:match("^parada%s+%d+$") ~= nil then
+        return get_stop_timetable_from_number(input:match("(%d+)$"))
+    elseif input:match("^suggest%s+") ~= nil or 
+           input:match("^sugerir%s+") ~= nil or
+           input:match("^suggerir%s+") ~= nil then
+        return suggestions_to_string(get_suggestions(input:match("^%w+%s+(.*)")),input:match("^%w+%s+(.*)"))
+    else
+        return suggestions_to_string(get_suggestions(input),input)
+    end
+--   else
+--     return general(matches[1])
+--   end
 end
 
 function reply(msg, text)
@@ -119,40 +157,33 @@ function get_stop_timetable_from_number(number)
             return get_stop_times(suggestion, '', 0, 'Anonimo', 'en')
             end
         end
-        return "Error: "..number.." stop does not exist :/"
+        return "Error: "..number.." stop does not exist"
     end
     
 end
 
     
-function general(cmd)
-  
-  
-  if tonumber(cmd) ~= nil then
-    return get_stop_timetable_from_number(cmd)
-  else
-    local suggestions = get_suggestions(cmd)
-  
-    local len = 0
-  
-    for i, stop in ipairs(suggestions) do
-      len=i
-    end
-  
-  
-    if len == 1 then
-      return get_stop_times(suggestions[1], '', 0, 'Anonimo', 'en')
+function general(input)  
+    if tonumber(input) ~= nil then
+        return get_stop_timetable_from_number(input)
     else
-      return suggestions_to_string(suggestions, cmd)
+        local suggestions = get_suggestions(input)
+        local len = 0
+  
+        for i, stop in ipairs(suggestions) do
+            len=i
+        end
+  
+        if len == 1 then
+            return get_stop_times(suggestions[1], '', 0, 'Anonimo', 'en')
+        else
+            return suggestions_to_string(suggestions, input)
+        end
     end
-    
-    
-  end
 end
 
 
 function suggestions_to_string(suggestions, string)
-  
     local len = 0
   
     for i, stop in ipairs(suggestions) do
@@ -170,11 +201,6 @@ function suggestions_to_string(suggestions, string)
     end
     
     return out
-    
-end
-
-function sleep(n)
-  os.execute("sleep " .. tonumber(n))
 end
 
 
@@ -304,26 +330,25 @@ function get_stop_times(station, line, adapted, user, lang)
 end
 
 
-function get_suggestions(cmd)
+function get_suggestions(input)
   local out = {}
     
   local url = 'https://www.emtvalencia.es/ciudadano/modules/mod_tiempo/sugiere_parada.php?'
-  local data = "parada=".. (URL.escape(cmd) or "")
+  local data = "parada=".. (URL.escape(input) or "")
 
   local res, code = https.request(url..data)
   
   for stop in res:gmatch("(%d+.-)<") do
       table.insert(out, stop)
---     out = out .. stop .. "\n"
   end
   
   return out
 end
 
 return {
-  description = "ASDF",
-  usage = "!asdf: Send asdf",
-  patterns = {"^/emt (.*)$"},
+  description = "",
+  usage = usage,
+  patterns = {"(.*)"},
   run = run
 }
 
