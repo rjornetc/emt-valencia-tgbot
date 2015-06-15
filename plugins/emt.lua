@@ -98,9 +98,6 @@ usage_ca = "EMT\n"..
 
 
 local function run(msg, matches)
-    if msg.to.id == 16024212 then
-        return false
-    end
     local input = matches[1]:lower()
     local command = input:match("^(%w*)")
     if command == "emt" then
