@@ -125,9 +125,9 @@ local function run(msg, matches)
     elseif  input == "ajuda" then
         return usage_ca
     elseif  input == "ajuda cercar" then
-        return usage_en
+        return usage_suggest_ca
     elseif  input == "ajuda horari" then
-        return usage_en
+        return usage_stop_ca
     else
         return emt(msg, input)
 --     else
