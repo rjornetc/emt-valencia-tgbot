@@ -1,111 +1,139 @@
 do
 
-usage_en = "EMT\n"..
-            "⠀emt - Valence EMT\n"..
-            "⠀⠀⠀public transport\n"..
-            "⠀⠀⠀information\n\n"..
-                
-            "SYNOPSIS\n"..
-            "⠀emt [stop] STOP-NUMBER\n"..
-            "⠀emt [suggest] STRING\n"..
-            "⠀emt help\n\n"..
-                
-            "DESCRIPTION\n"..            --| 
-            "⠀stop STOP-NUMBER\n"..
-            "⠀⠀display stop timetable\n\n"..
-                
-            "⠀suggest STRING\n"..
-            "⠀⠀suggest and show stops\n"..
-            "⠀⠀that match the STRING\n\n"..
-                
-            "⠀help\n"..
-            "⠀⠀display this help\n\n"..
-                
-            "⠀no options\n"..
-            "⠀⠀suggest and display\n"..
-            "⠀⠀stops that matches\n"..
-            "⠀⠀the STRING, if there\n"..
-            "⠀⠀is a single stop that\n"..
-            "⠀⠀matches, display its\n"..
-            "⠀⠀timetable, if don't\n"..
-            "⠀⠀list them all"
+usage_en = "Use \"help search\" to get information about who to search the "..
+    "stops along a street\n"..
+    "Use \"help timetable\" to get information about who to get the "..
+    "timetable of a stop\n"..
+    "Castellano: ayuda\n"..
+    "Valencià: ajuda"
 
-usage_es = "EMT\n"..
-            "⠀emt - Información del\n"..
-            "⠀⠀⠀transporte público\n"..
-            "⠀⠀⠀EMT Valencia\n\n"..
-                
-            "SYNOPSIS\n"..
-            "⠀emt [parada] NÚMERO\n"..
-            "⠀emt [sugerir] TEXTO\n"..
-            "⠀emt ayuda\n\n"..
-                
-            "DESCRIPTION\n"..            --| 
-            "⠀parada NÚMERO\n"..
-            "⠀⠀muestra el horario de\n"..
-            "⠀⠀la parada\n\n"..
-                
-            "⠀sugerir TEXTO\n"..
-            "⠀⠀busca y muesta las\n"..
-            "⠀⠀paradas que coinciden\n"..
-            "⠀⠀con el TEXTO\n\n"..
-                
-            "⠀ayuda\n"..
-            "⠀⠀muestra esta ayuda\n\n"..
-                
-            "⠀sin opciones\n"..
-            "⠀⠀busca y muestra las\n"..
-            "⠀⠀paradas que coinciden\n"..
-            "⠀⠀con el TEXTO\n"..
-            "⠀⠀introducido, si\n"..
-            "⠀⠀encuentra una única\n"..
-            "⠀⠀parada, muestra su\n"..
-            "⠀⠀horario, si no, las\n"..
-            "⠀⠀lista todas"
+usage_es = "Usa \"ayuda buscar\" para obtener información sobre cómo buscar "..
+    "las paradas de una calle\n"..
+    "Usa \"ayuda horario\" para obtener información sobre cómo obtener el "..
+    "horario de una parada\n"..
+    "English: help\n"..
+    "Valencià: ajuda"
 
-usage_ca = "EMT\n"..
-            "⠀emt - Informació del\n"..
-            "⠀⠀⠀transport públic\n"..
-            "⠀⠀⠀EMT València\n\n"..
-                
-            "SYNOPSIS\n"..
-            "⠀emt [parada] NOMBRE\n"..
-            "⠀emt [suggerir] TEXT\n"..
-            "⠀emt ajuda\n\n"..
-                
-            "DESCRIPTION\n"..            --| 
-            "⠀parada NOMBRE\n"..
-            "⠀⠀mostra l'horari de la\n"..
-            "⠀⠀parada\n\n"..
-                
-            "⠀suggerir TEXT\n"..
-            "⠀⠀cerca y mostra les\n"..
-            "⠀⠀parades que coincideixen\n"..
-            "⠀⠀amb el TEXT\n\n"..
-                
-            "⠀ajuda\n"..
-            "⠀⠀mostra aquesta ajuda\n\n"..
-                
-            "⠀sense opcions\n"..
-            "⠀⠀busca i mostra les\n"..
-            "⠀⠀parades que\n"..
-            "⠀⠀coincideixen amb el\n"..
-            "⠀⠀TEXT introduït, si\n"..
-            "⠀⠀troba una única\n"..
-            "⠀⠀parada, mostra el seu\n"..
-            "⠀⠀horari, si no, les\n"..
-            "⠀⠀llista totes"
+usage_ca = "Usa \"ajuda cercar\" per obtenir informació sobre com buscar" ..
+    "les parades d'un carrer\n" ..
+    "Usa \"ajuda horari\" per obtenir informació sobre com obtenir el" ..
+    "horari d'una parada\n"..
+    "English: help\n"..
+    "Castellano: ayuda"
 
+usage_suggest_en = "Search the stops along a street\n" ..
+    "━━━━━━━━━━━━━━━━━━\n" ..
+    "To suggest stops for a particular street must enter the name (full or "..
+    "partial) of the street.\n\n" ..
+
+    "For example\n" ..
+    "──────────────────\n" ..
+    "For Tarongers street stops can be entered:\n" ..
+    "taron\n" ..
+    "tarongers\n" ..
+    "...\n" ..
+    "╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴\n" ..
+    "For Blasco Ibañez street stops can be entered:\n" ..
+    "blas\n" ..
+    "Blasco\n" ..
+    "Blasco Ibañez\n" ..
+    "..."
+
+usage_stop_en = "Get a stop timetable\n" ..
+    "━━━━━━━━━━━━━━━━━━\n\n" ..
+
+    "For the timetable of a stop introduce the number of this stop.\n\n" ..
+
+    "For example\n" ..
+    "──────────────────\n" ..
+    "For the 1489 stop timetable:\n" ..
+    "1489"
+
+usage_suggest_es = "Buscar las paradas de una calle\n"..
+    "━━━━━━━━━━━━━━━━━━\n"..
+    "Para obtener las paradas sugeridas para una determinada calle ha de "..
+    "introducirse el nombre (completo o parcial) de la calle.\n\n"..
+    
+    "Por ejemplo\n"..
+    "──────────────────\n"..
+    "Para obtener las paradas de Tarongers puede introducirse:\n"..
+    "taron\n"..
+    "tarongers\n"..
+    "...\n"..
+    "╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴\n"..
+    "Para obtener las paradas de Blasco Ibañez puede introducirse:\n"..
+    "blas\n"..
+    "blasco\n"..
+    "blasco ibañez\n"..
+    "..."
+    
+usage_stop_es = "Obtener horario de una parada\n"..
+    "━━━━━━━━━━━━━━━━━━\n\n"..
+    
+    "Para obtener el horario de una parada a de introducirse el número de la "..
+    "misma.\n\n"..
+    
+    "Por ejemplo\n"..
+    "──────────────────\n"..
+    "Para obtener el horario de la parada 1489:\n"..
+    "1489"
+
+usage_suggest_ca = "Cercar les parades d'un carrer\n"..
+    "━━━━━━━━━━━━━━━━━━\n\n"..
+    "Per obtenir les parades suggerides per un determinat carrer cal "..
+    "introduir-se el nom (complet o parcial) del carrer.\n\n"..
+    
+    "Per exemple\n"..
+    "──────────────────\n"..
+    "Per obtenir les parades de Tarongers pot introduir-se:\n"..
+    "taron\n"..
+    "tarongers\n"..
+    "...\n"..
+    "╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴\n"..
+    "Per obtenir les parades de Blasco Ibañez pot introduir-se:\n"..
+    "blas\n"..
+    "blasco\n"..
+    "blasco ibañez\n"..
+    "..."
+
+usage_stop_ca = "Obtenir horari d'una parada\n"..
+    "━━━━━━━━━━━━━━━━━━\n\n"..
+
+    "Per obtenir l'horari d'una parada a d'introduir-se el número de la"..
+    "mateixa.\n\n"..
+
+    "Per exemple\n"..
+    "──────────────────\n"..
+    "Per obtenir l'horari de la parada 1489:\n" ..
+    "1489"
 
 local function run(msg, matches)
     local input = matches[1]:lower()
-    local command = input:match("^(%w*)")
-    if command == "emt" then
-        return emt(msg, input:match("^emt%s*(.*)%s*$"))
+    local command = input:match("^(.-)%s")
+    if      input == "help" then
+        return usage_en
+    elseif  input == "help search" then
+        return usage_suggest_en
+    elseif  input == "help timetable" then
+        return usage_stop_en
+    elseif  input == "ayuda" then
+        return usage_es
+    elseif  input == "ayuda buscar" then
+        return usage_suggest_es
+    elseif  input == "ayuda horario" then
+        return usage_stop_es
+    elseif  input == "ajuda" then
+        return usage_ca
+    elseif  input == "ajuda cercar" then
+        return usage_en
+    elseif  input == "ajuda horari" then
+        return usage_en
     else
-        return command .. " is not a valid command, try with \"emt\"\n"..
-               command .. " no es un comando válido, prueba con \"emt\"\n"..
-               command .. " no és una ordre vàlida, prova amb \"emt\"\n"
+        return emt(msg, input)
+--     else
+--         return command .. " is not a valid command, try with \"emt\"\n"..
+--                command .. " no es un comando válido, prueba con \"emt\"\n"..
+--                command .. " no és una ordre vàlida, prova amb \"emt\"\n"
     end
 end
         
